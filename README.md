@@ -1,4 +1,3 @@
-# practice
 
 - c++
     - [namespace](./C++/NameSpace.md)
