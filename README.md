@@ -5,4 +5,4 @@
 
 
 - UE4
-    - [StaticMeshComponent](./UE4/Actor.md)
+    - [StaticMeshComponent](./UE4/StaticMeshComponent.md)
