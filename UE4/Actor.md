@@ -28,4 +28,4 @@
 
 ## 5. 디태일 패널에서 모양과 재질을 선택
 
-![5](https://user-images.githubusercontent.com/48274630/158017975-ba44e2af-85ad-4e5b-8602-d92c7839f6ad.PNG)
+![5](https://user-images.githubusercontent.com/48274630/158018260-6a8b8f0c-613b-4961-92d6-a364025b7db3.PNG)
