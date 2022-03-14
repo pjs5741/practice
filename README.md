@@ -6,4 +6,5 @@
 
 
 - UE4
-    - [StaticMeshComponent](./UE4/StaticMeshComponent.md)
+    - [스태틱메시컴포넌트](./UE4/StaticMeshComponent.md)
+    - [리타기팅](./UE4/Retargeting.md)
