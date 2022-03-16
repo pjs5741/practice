@@ -10,6 +10,8 @@
 ## 플레이어 컨트롤러
 게임에서 플레이어와 1:1로 소통하면서 폰을 조종하는 역할을 맡는다.
 
+
+MyGameModeBase.h
 ```
 // Fill out your copyright notice in the Description page of Project Settings.
 
@@ -35,6 +37,8 @@ public:
 };
 ```
 
+
+MyGameModeBase.cpp
 ```
 // Fill out your copyright notice in the Description page of Project Settings.
 
@@ -56,6 +60,8 @@ void AMyGameModeBase::PostLogin(APlayerController * NewPlayer)
 
 ```
 
+
+MyPawn.h
 ```
 // Fill out your copyright notice in the Description page of Project Settings.
 
@@ -63,8 +69,9 @@ void AMyGameModeBase::PostLogin(APlayerController * NewPlayer)
 
 #include "Engineminimal.h"
 #include "GameFramework/Pawn.h"
-#include "MyPawn.generated.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "MyPawn.generated.h"
+
 
 UCLASS()
 class QWER_API AMyPawn : public APawn
@@ -97,15 +104,18 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = Movement)
 		UFloatingPawnMovement* Movement;
 
-	UPROPERTY(VisibleAnywhere, Category = Collision)
+	UPROPERTY(VisibleAnywhere, Category = Camera)
 		USpringArmComponent* SpringArm;
 
-	UPROPERTY(VisibleAnywhere, Category = Collision)
+	UPROPERTY(VisibleAnywhere, Category = Camera)
 		UCameraComponent* Camera;
 
 };
+
 ```
 
+
+MyPawn.cpp
 ```
 // Fill out your copyright notice in the Description page of Project Settings.
 
@@ -127,18 +137,18 @@ AMyPawn::AMyPawn()
 	RootComponent = Capsule;
 	Mesh->SetupAttachment(Capsule);
 	SpringArm->SetupAttachment(Capsule);
-	Camera->SetupAttachment(Capsule);
+	Camera->SetupAttachment(SpringArm);
 
 	Capsule->SetCapsuleHalfHeight(88.0f);
 	Capsule->SetCapsuleRadius(34.0f);
-	Mesh->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -99.0f), FRotator(0.0f, -90.0f, 0.0f));
+	Mesh->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -88.0f), FRotator(0.0f, -90.0f, 0.0f));
 	SpringArm->TargetArmLength = 400.0f;
 	SpringArm->SetRelativeRotation(FRotator(-15.0f, 0.0f, 0.0f));
 
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SK_CARDBOARD(TEXT(" / Game / InfinityBladeWarriors / Character / CompleteCharacters / SK_CharM_Cardboard.SK_CharM_Cardboard"));
-	if (SK_CARDBOARD.Succeeded())
+	static ConstructorHelpers::FObjectFinder<USkeletalMesh> SKELETALMESH(TEXT("/Game/InfinityBladeWarriors/Character/CompleteCharacters/SK_CharM_Cardboard.SK_CharM_Cardboard"));
+	if (SKELETALMESH.Succeeded())
 	{
-		Mesh->SetSkeletalMesh(SK_CARDBOARD.Object);
+		Mesh->SetSkeletalMesh(SKELETALMESH.Object);
 	}
 
 }
@@ -174,8 +184,10 @@ void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 }
 
-```
 
+
+```
+MyPlayerController.h
 
 ```
 // Fill out your copyright notice in the Description page of Project Settings.
@@ -200,7 +212,7 @@ public:
 };
 
 ```
-
+MyPlayerController.cpp
 ```
 // Fill out your copyright notice in the Description page of Project Settings.
 
@@ -217,21 +229,7 @@ void AMyPlayerController::OnPossess(APawn* aPawn)
 	Super::OnPossess(aPawn);
 }
 ```
+![4](https://user-images.githubusercontent.com/48274630/158616745-33c8a815-037c-4c69-af7a-58c1d613d9ef.PNG)
 
 
-현재 MyPawn.cpp에
-```
-void AMyPawn::PossessedBy(AController* NewController)
-{
-	Super::PossessedBy(NewController);
-}
-
-// Called to bind functionality to input
-void AMyPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
-```
-
-부분에 Super::PossessedBy와 Super::SetupPlayerInputComponent(PlayerInputComponent)가 클래스 AActor에 멤버가 없다면서 오류, 고치는 중
+폰생성 완료모습 움직이지는 않는다. 기본으로 주어지는 마네킹을 사용하고싶었지만 생각대로 안되어서 일단은 책에서 하라는대로 해두었다.
