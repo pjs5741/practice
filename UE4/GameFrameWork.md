@@ -230,6 +230,3 @@ void AMyPlayerController::OnPossess(APawn* aPawn)
 }
 ```
 ![4](https://user-images.githubusercontent.com/48274630/158616745-33c8a815-037c-4c69-af7a-58c1d613d9ef.PNG)
-
-
-폰생성 완료모습 움직이지는 않는다. 기본으로 주어지는 마네킹을 사용하고싶었지만 생각대로 안되어서 일단은 책에서 하라는대로 해두었다.
