@@ -36,8 +36,6 @@ vector<int> solution(long long n) {
 ```
 
 처음코드인데 while문만 있으면 되는거였는데 잘못생각해서 밑에 for문을 만들어버렸다.
-for문을 쓸려면 전에했던 배열문제에서 사용한 to_string을 사용하면 될 것같다.
-내가 만든 코드는 밑에 것이다.
 
 ```
 #include <string>
