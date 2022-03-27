@@ -13,40 +13,32 @@ using namespace std;
 
 long long solution(long long n) {
     long long answer = 0;
-    int a =1;
-    long long b =1;
-    int c =0;
-    int d =1;
+    long long a =1;
+    int b =1;
     int temp =0;
     vector<long long> v;
     
-    while(n/b>0)
-    {
-        b*=10;
-        c++;
-    }
-    
-    for(int i=0;i<c;i++)
+    while(n/a>0)
     {
         v.push_back(n/a%10);
-        a*=10; 
+        a*=10;
     }
-    for(int j=0;j<v.size();j++)
+    for(int i=0;i<v.size();i++)
     {
-        for(int k=0;k<v.size();k++)
+        for(int j=0;j<v.size();j++)
         {
-            if(v[j]<v[k])
+            if(v[i]<v[j])
             {
-                temp=v[k];
-                v[k]=v[j];
-                v[j]=temp;
+                temp=v[j];
+                v[j]=v[i];
+                v[i]=temp;
             }
         } 
     }
-    for(int e=0;e<v.size();e++)
+    for(int k=0;k<v.size();k++)
     {
-        answer+=d*v[e];
-        d*=10;
+        answer+=b*v[k];
+        b*=10;
     }
     return answer;
 }
