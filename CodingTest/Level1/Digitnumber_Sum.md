@@ -16,11 +16,11 @@ int solution(int n)
 
     int answer = 0;
     int a=1;
-    for(int i=0;i<9;i++)
-    {
+   while(n/a>0)
+   {
         answer+=n/a%10;
         a*=10;
-    }
+   }
     
     return answer;
 }
