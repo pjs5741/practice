@@ -47,3 +47,35 @@ int solution(int n) {
 ```
 
 이 코드는 수가적으면 잘 작동되지만 수가 높아질수록 검사가 길어져서 효용성문제로 풀어지지않았다. 지금 나로는 어찌해야될지 도저히 생각이안나서 검색의 힘을 살짝 빌려서 더 알아보고 다음에 다시 해봐야 될 듯 하다.
+
+```
+#include <string>
+#include <vector>
+
+using namespace std;
+
+
+int solution(int n) {
+    int answer = 0;
+    vector<bool> chk(n+1, 0);
+  
+    for(int i=2; i<=n; i++){
+        if(chk[i])
+            continue;
+        
+        for(int j=i+i; j<=n; j+=i){
+            chk[j]=1;
+        }
+    }
+    
+    for(int i=2; i<=n; i++){
+        if(!chk[i]){
+            answer++;
+        }
+    }
+    
+    return answer;
+}
+```
+
+결국엔 못풀어서 검색해봤는데 에라토스테네스의체라는 방법을 사용하는 것이었다. 이 방법은 2부터 n까지의 소수를 찾고, 그 배수를 모두 지운후에 남은 수중에 소수를 찾는방법을 반복하는 방법이다.
