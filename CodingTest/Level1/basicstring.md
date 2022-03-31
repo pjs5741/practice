@@ -23,7 +23,6 @@ bool solution(string s) {
             if(!(s[i]>='0'&&s[i]<='9'))
             {
                 answer = false;
-                break;
             }
       
         }
