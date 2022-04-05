@@ -63,7 +63,7 @@ vector<int> solution(vector<int> arr)
     return answer;
 }
 ```
-다음에는 이런식으로 바꿔보았는데 이러니 arr.[0]의 숫자가 빠졌다. 이러면 다 해결된것같다. 맨처음에 arr[0]을 푸쉬백하면 
+다음에는 이런식으로 바꿔보았는데 이러니 arr[0]의 숫자가 빠졌다. 이러면 다 해결된것같다. 맨처음에 arr[0]을 푸쉬백하면 
 ```
 #include <vector>
 #include <iostream>
