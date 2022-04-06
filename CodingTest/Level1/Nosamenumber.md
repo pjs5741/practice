@@ -94,4 +94,60 @@ vector<int> solution(vector<int> arr)
 }
 ```
 
-끝
+된줄알았는데 채점후 제출을하니 16번 하나가 안된다.
+
+그래서 생각을 계속했는데 arr를 굳이 지울필요가있나? 였다. return은 어짜피 answer인것을
+그리하여 나온 코드는
+
+```
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+vector<int> solution(vector<int> arr) 
+{
+    vector<int> answer;
+    
+
+    for(int i=0;i<arr.size();i++)
+    {
+        
+        if(arr[i]!=arr[i+1])
+            answer.push_back(arr[i]);
+    }
+    
+    
+   
+
+    return answer;
+}
+```
+
+인데 이 코드는 또 17번이 틀린다. 그나마 나은점은 이전 코드는 효율성검사도 실패였는데 이코드는 효율성검사는 오케이다.
+질문하기 들어가보니 문제[1,1] 답[1] 이라는 테스트케이스를 보고 내가 만든코드는 쓰레기값때문에 마지막i와i+1이 달라져서 어떻게 얻어걸린거란걸 알았고
+```
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+vector<int> solution(vector<int> arr) 
+{
+    vector<int> answer;
+    
+    answer.push_back(arr[0]);
+    for(int i=1;i<arr.size();i++)
+    {
+        
+        if(arr[i-1]!=arr[i])
+            answer.push_back(arr[i]);
+    }
+    
+    
+   
+
+    return answer;
+}
+```
+위 테스트케이스를 통과하기 위해 arr[0]을 먼저 넣고 그 후 비교를 해서 다르면 뒤에 값이 들어가도록했다. 앞에값이 들어가면 arr[0]을 넣은것과 중복이 되므로
