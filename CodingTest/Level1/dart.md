@@ -185,10 +185,10 @@ int solution(string dartResult) {
                     v.push_back(10);
                 }
                 else
-                    v.push_back(dartResult[i-1]-48);
+                    v.push_back(dartResult[i-1]-'0');
             }
                 else
-                    v.push_back(dartResult[i-1]-48);
+                    v.push_back(dartResult[i-1]-'0');
             if(dartResult[i]=='S')
             {
                 j++;           
@@ -231,4 +231,4 @@ int solution(string dartResult) {
     return answer;
 }
 ```
-이렇게 끝났다.
+이렇게 끝났다. 48을 빼는것보다 '0'을 빼는것이 더 보기편해보여서 바꿨다.
