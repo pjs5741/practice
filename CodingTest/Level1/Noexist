@@ -1,0 +1,66 @@
+문제 설명   
+0부터 9까지의 숫자 중 일부가 들어있는 정수 배열 numbers가 매개변수로 주어집니다. numbers에서 찾을 수 없는 0부터 9까지의 숫자를 모두 찾아 더한 수를 return 하도록 solution 함수를 완성해주세요.
+
+제한사항   
+1 ≤ numbers의 길이 ≤ 9   
+0 ≤ numbers의 모든 원소 ≤ 9   
+numbers의 모든 원소는 서로 다릅니다.    
+
+```
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
+using namespace std;
+
+int solution(vector<int> numbers) {
+    int answer = 0;
+    vector<int> v;
+    int count=0;
+    sort(numbers.begin(),numbers.end());
+    for(int i:numbers)
+    {
+        if(i==8&& i==numbers[numbers.size()-1])
+        {
+            answer+=9;
+        }
+        else
+        {
+            if(i!=count)
+            {
+                for(count;count<i;count++)
+                {
+                    answer+=count;
+                }
+                count++;
+            }
+            else
+            count++;
+        }
+    }
+    
+    return answer;
+}
+```
+
+처음 코드인데 코드 실행은 됬는데 제출 후 채점하기가 안되고, 더이상 생각해도 어떻게 고쳐야 될지 모르겠어서
+검색해봤는데
+
+```
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<int> numbers) {
+    int answer = 45;
+    for (size_t i=0; i < numbers.size(); i++){
+        answer-= numbers[i];
+    }
+    
+    return answer;
+}
+```
+
+조건에서 그냥 0부터 9까지라 45에서 있는수를다빼면 끝나는 문제였다 반대로 생각해보는 법도 까먹지말고 있어야되겠다.
