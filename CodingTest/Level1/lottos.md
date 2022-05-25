@@ -87,3 +87,58 @@ vector<int> solution(vector<int> lottos, vector<int> win_nums) {
 }
 ```
 
+처음 코드인데 계속 코어덤프가 나서 위에 for문에서 오류인지 아래 for문에서 오류인지 확인해봤는데 위를 지워도 작동하고 아래를 지워도 작동이 되었다. 그래서 그냥 for문을 최소한으로 쓰기위해 위에 의미없는 for문을 없애버렸다
+
+
+```
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+vector<int> solution(vector<int> lottos, vector<int> win_nums) {
+    vector<int> answer;
+    vector<int> v;
+    int count=0,molru=0;
+    
+    for(int i=0;i<lottos.size();i++)
+    {
+        if(lottos[i]==0)
+        {
+            molru++;
+            continue;
+        }
+        else
+        {
+            for(int j=0;j<win_nums.size();j++)
+            {
+                if(lottos[i]==win_nums[j])
+                {
+                    count++;
+                    win_nums.erase(win_nums.begin()+j);
+                    break;
+                }
+            }
+        }
+    }
+    
+    int max=0,min=0;
+    
+    if(molru+count<2)
+        max=6;
+    else
+        max = 6-(molru+count)+1;
+    if(count<2)
+        min=6;
+    else
+        min=6-count+1;
+    
+    answer.push_back(max);
+    answer.push_back(min);
+    
+    return answer;
+}
+```
+
+끝
