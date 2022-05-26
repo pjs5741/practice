@@ -74,3 +74,38 @@ int solution(int n, int k) {
 524287, 2의 테스트 케이스를 추가했다.
 a를 담기에 int가 적합하지 않아서 long long으로 바꾸자 아예 오류가 나버린다 
 b가 19까지 가는것을 보니 1이 19번 나오나 보다 이걸 줄여야될것같은데 검색해보니 모두다 to_string을 사용 문자열로 바꾸고 다시 stoi로 인트로바꾸었다. 다음에 그냥 다 지워버리고 다시만들어야겠다. 비슷한 문제를 이제 꽤 풀어봐서 할만 해진거 같다.
+
+```
+#include <bits/stdc++.h>
+using namespace std;
+
+bool is_prime(long long n) {
+    if (n < 2) return false;
+    for (long long i = 2; i * i <= n; ++i) if (n % i == 0) return false;
+    return true;
+}
+int solution(int n, int k) {
+    string str;
+    while (n) {
+        str += n % k + 48;
+        n /= k;
+    }
+
+    reverse(str.begin(), str.end());
+    str += 48;
+
+    int ans = 0;
+    for (long long hold = 0, i = 0; i < str.size(); ++i) {
+        if (str[i] == '0') {
+            if (is_prime(hold)) ++ans;
+            hold = 0;
+            continue;
+        }
+        hold = hold * 10 + str[i] - 48;
+    }
+
+    return ans;
+}
+```
+
+다지우고 처음부터 해봤는데 실패했다. 바로앞까지온거같은데 아직 더 생각해봐야될듯하다
